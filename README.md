@@ -68,3 +68,16 @@ The project is divided into several key components:
    git clone https://github.com/yourusername/your-repo-name.git
    cd your-repo-name
    ```
+
+2. **Install the environment on miniconda**
+
+    ```{bash}
+    conda env create -f environment.yml
+    conda activate bomr
+    ```
+
+3. **Connect the Thymio robot**
+    Use the [Thymio Suite](https://www.thymio.org/download-thymio-suite/) to connect to the robot
+
+4. **Run the project!**
+    Just run the `run.ipynb` notebook.

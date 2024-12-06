@@ -1,5 +1,4 @@
 import numpy as np
-import time
 
 #convert into matematical or cv2 coordinate
 def convert_vec(vec):

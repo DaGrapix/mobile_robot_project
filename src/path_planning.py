@@ -1,9 +1,8 @@
 from typing import List
 import cv2
 import numpy as np
-from bresenham import bresenham
-
 import networkx as nx
+from bresenham import bresenham
 
 def create_obstacle_map(extended_polygons, image_shape): # create an obstacle map from the polygons
     obstacle_map = np.ones(image_shape[:2])

@@ -10,3 +10,5 @@ dependencies:
   - opencv-python==4.10.0.84
   - networkx==3.4.2
   - bresenham==0.2.1
+  - tdmclient==0.1.21
+  - scipy==1.14.1

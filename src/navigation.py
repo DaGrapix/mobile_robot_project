@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from src.geometry import get_angle, convert_vec, define_line_p, dir_to_line, convert_points
+from src.geometry import get_angle, define_line_p, dir_to_line, convert_points
 from src.path_planning import path_planning
 
 GLOBAL_GAIN_ANGLE = 1.7

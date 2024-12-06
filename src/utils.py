@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-from tdmclient import ClientAsync, aw
+import matplotlib.pyplot as plt
+from scipy.stats import multivariate_normal
 
 def add_robot(image, robot_pos, robot_orientation, robot_corners):
     new_image = image.copy()
@@ -66,8 +67,6 @@ def add_point(image, point):
 
     
 def plot_orientation(angle_estime, variance_angle):
-    import matplotlib.pyplot as plt
-
     sigma = np.sqrt(variance_angle)  # Écart-type
     angle = np.linspace(-np.pi, np.pi, 500)  # Intervalle [-pi, pi]
     gaussienne = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((angle - angle_estime) / sigma) ** 2)
@@ -82,7 +81,7 @@ def plot_orientation(angle_estime, variance_angle):
     plt.legend()
     plt.show()
 
-from scipy.stats import multivariate_normal
+
 def gauss2d(robot_pos_kalman, covariance_kalman, map_size):
     # https://gist.github.com/danoneata/75c5bbe8d651d4ec0e804995010a850d
     
@@ -111,7 +110,6 @@ def draw_kalman_pos(robot_pos_kalman, covariance_kalman, map_size):
     return gaussian
 
 
-import matplotlib.pyplot as plt
 def draw_kalman_angle(angle_kalman, variance_angle):
     # https://stackoverflow.com/questions/77714621/how-to-convert-a-matplotlib-figure-to-a-cv2-image
     sigma = np.sqrt(variance_angle)  # Écart-type

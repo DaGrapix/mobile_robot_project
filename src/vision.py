@@ -1,13 +1,8 @@
-# Code inspired from https://www.geeksforgeeks.org/perspective-transformation-python-opencv/ for the perspective transformation.
-
 import cv2
 import numpy as np
-import json
-import os
-import glob
+from typing import List
 
-from typing import Optional, List
-
+# Code inspired from https://www.geeksforgeeks.org/perspective-transformation-python-opencv/ for the perspective transformation.
 
 class VisionDetector:
     def __init__(self, initial_image: np.ndarray, map_size: List[int], **kwargs):
@@ -236,7 +231,7 @@ class VisionDetector:
                 'orientation': orientation
             }
 
-from typing import List
+
 
 def find_circles(image, min_radius=1, max_radius=40, thresh1=300, thresh2=30):
     # https://www.geeksforgeeks.org/circle-detection-using-opencv-python/
