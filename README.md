@@ -60,7 +60,7 @@ The project is divided into several key components:
 
 - **Error Handling**: Implementing mechanisms to handle discrepancies between the expected and observed states, including recovery strategies.
 
-## Installation
+## Running the project
 
 1. **Clone the Repository**
 
