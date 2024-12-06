@@ -1,0 +1,12 @@
+# to install the environment run: conda env create --file environment.yml
+# to update the environment run:  conda env update --file environment.yml --prune
+name: bomr
+dependencies:
+- python=3.10
+- numpy=1.23.5
+- matplotlib=3.9.2
+- seaborn=0.13.2
+- pip:
+  - opencv-python==4.10.0.84
+  - networkx==3.4.2
+  - bresenham==0.2.1
