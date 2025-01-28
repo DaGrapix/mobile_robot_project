@@ -2,6 +2,10 @@
 
 This project involves implementing path planning and state estimation for a mobile robot using computer vision, path planning algorithms, and a Kalman Filter. The robot navigates on the map in order to collect all of the objective points while avoiding obstacles and estimates its position and orientation in real-time using odometry and camera information.
 
+## Demo
+
+![Robot Navigation Demo](assets/videos/video.gif)
+
 ## Introduction
 
 The Thymio robot has to get up every day to deliver his loaves of bread to his customers. One day, he asked Group 44 of the BOMR class for some help!
@@ -9,10 +13,6 @@ The Thymio robot has to get up every day to deliver his loaves of bread to his c
 With the help of their instructor Prof. Mondada and the army of TAs, the group of students managed to quickly propose a solution to make the bread delivery as efficient as possible!
 
 As part of the "Basics of Mobile Robotics" course project by Professor Mondada, this project aims at creating a complete mobile robotics pipeline on the Thymio robot. In this sense, the robot has to navigate a map to deliver his loaves to his customers, located on the red circles. During this mission, it must avoid obstacles and find the path that minimizes his delivery. To achieve this.
-
-## Demo
-
-![Robot Navigation Demo](assets/videos/video.gif)
 
 ## Project Overview
 
