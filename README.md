@@ -1,6 +1,6 @@
 # Mobile Robot Path Planning and Kalman Filter Implementation
 
-This project involves implementing path planning and state estimation for a mobile robot using computer vision, path planning algorithms, and a Kalman Filter. The robot navigates on the map in order to collect all of the objective points while avoiding obstacles and estimates its position and orientation in real-time using odometry and camera information.
+This project involves implementing a completely autonomous mobile robot using computer vision, path planning algorithms, controllers and a Kalman Filter. The robot navigates the map in order to collect all of the objective points while avoiding both global obstacles (seen by the camera) and local ones (only seen by proximity sensors when close enough), and by estimating its position and orientation in real-time using odometry and camera information.
 
 ## Demo
 
@@ -8,76 +8,26 @@ This project involves implementing path planning and state estimation for a mobi
 
 ## Introduction
 
-The Thymio robot has to get up every day to deliver his loaves of bread to his customers. One day, he asked Group 44 of the BOMR class for some help!
+The Thymio robot has to get up every day to deliver its loaves of bread to its customers. One day, he asked Group 44 of the BOMR class for some help!
 
-With the help of their instructor Prof. Mondada and the army of TAs, the group of students managed to quickly propose a solution to make the bread delivery as efficient as possible!
+With the help of their instructor Prof. Mondada and the army of TAs, the group managed to quickly propose a solution (in 4 weeks!) to make the bread delivery as efficient as possible!
 
-As part of the "Basics of Mobile Robotics" course project by Professor Mondada, this project aims at creating a complete mobile robotics pipeline on the Thymio robot. In this sense, the robot has to navigate a map to deliver his loaves to his customers, located on the red circles. During this mission, it must avoid obstacles and find the path that minimizes his delivery. To achieve this.
 
 ## Project Overview
 
 The project is divided into several key components:
 
-1. **Computer Vision and Localization**: Using OpenCV and ArUco markers to detect the robot's position and orientation within the environment, detecting global obstacles in the form of black polygons as well as objective red discs.
+1. **Computer Vision and Localization**: 
+ArUco markers are used to detect the environment map as well as the pose of the robot.
+    Black polygons, which are global obstacles, are detected with an edge detection algorithm and red circles with the Hough circle transform.
 
-2. **Path Planning**: Implementing path planning algorithms to compute the most efficient route to reach the target points while avoiding obstacles.
+2. **Path Planning**: A path planning algorithm retrieves the shortest path for the robot to collect all red circles. Taking into account the objective points and environment keypoints (obtained by expanding the global obstacles), the algorithm runs a graph search in the graph comprising these two sources of points with edges between two points if they are mutually visible.
+    
+    The search is done in a dynamic-programming sense where first the shortest path between any pair of objective points is computed, after which the shortest global path is computed by stitching together, for every possible permutation of objective points, the paths obtained by considering each successive pair of objective points.
 
-3. **Kalman Filter**: Applying a Kalman Filter for state estimation to fuse sensor data and improve the accuracy of the robot's perceived position and orientation.
+3. **Control and Navigation**: The navigation is split into two modes: global and local navigation. While the goal of the global navigation is to reach all of the objectives, the local navigation ensures that the robot doesn't make an accident with an obstacle that is not seen by the camera.
+The robot switches from the first to the second when an obstacle is detected by its proximity sensors.
 
-4. **Control and Navigation**: Developing control strategies for the robot to follow the planned path and adjust its movements based on real-time feedback.
+4. **Pose estimation**: A Kalman filter is used to merge the information obtained by the camera and the odometry. This also allows the robot to move independtly of the camera (when it is not available) by only relying on its odometry information.
 
-## Main Components and Ideas
-
-### 1. Computer Vision and Localization
-
-- **Camera Calibration**: Calibrating the camera to correct distortions and improve the accuracy of the position and orientation measurements.
-
-- **ArUco Marker Detection**: Utilizing ArUco markers placed on the robot and within the environment to determine the robot's pose.
-
-- **Coordinate Transformation**: Converting detected marker positions from image coordinates to real-world coordinates for accurate localization.
-
-### 2. Path Planning
-
-- **Map Representation**: Defining the environment's map, including obstacles and target points, to be used for path planning.
-
-- **Algorithm Implementation**: Implementing path planning algorithms such as the Traveling Salesman Problem (TSP) solver to determine the optimal path visiting all target points.
-
-- **Obstacle Avoidance**: Incorporating obstacle detection and avoidance mechanisms within the path planning to ensure safe navigation.
-
-### 3. Kalman Filter
-
-- **State Estimation**: Using the KF to estimate the robot's state (position and orientation) by combining the predictive model and the measurements from the sensors.
-
-- **Predictive Model**: Defining the robot's motion model to predict its next state based on control inputs.
-
-- **Measurement Update**: Updating the state estimate using measurements from the computer vision system.
-
-### 4. Control and Navigation
-
-- **Motor Control**: Sending appropriate speed commands to the robot's motors to follow the planned path.
-
-- **Feedback Loop**: Continuously updating the robot's state estimate and adjusting control commands based on real-time feedback.
-
-- **Error Handling**: Implementing mechanisms to handle discrepancies between the expected and observed states, including recovery strategies.
-
-## Running the project
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
-   ```
-
-2. **Install the environment on miniconda**
-
-    ```{bash}
-    conda env create -f environment.yml
-    conda activate bomr
-    ```
-
-3. **Connect the Thymio robot**
-    Use the [Thymio Suite](https://www.thymio.org/download-thymio-suite/) to connect to the robot
-
-4. **Run the project!**
-    Just run the `run.ipynb` notebook.
+Further explanations are available in the `report.ipynb` notebook. 
