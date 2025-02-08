@@ -1,4 +1,4 @@
-# Mobile Robot Path Planning and Kalman Filter Implementation
+# Mobile Robot Project
 
 This project involves implementing a completely autonomous mobile robot using computer vision, path planning algorithms, controllers and a Kalman Filter. The robot navigates the map in order to collect all of the objective points while avoiding both global obstacles (seen by the camera) and local ones (only seen by proximity sensors when close enough), and by estimating its position and orientation in real-time using odometry and camera information.
 
