@@ -17,7 +17,7 @@ With the help of their instructor Prof. Mondada and the army of TAs, the group m
 
 The project is divided into several key components:
 
-1. **Computer Vision and Localization**: 
+1. **Global Vision**: 
 ArUco markers are used to detect the environment map as well as the pose of the robot.
     Black polygons, which are global obstacles, are detected with an edge detection algorithm and red circles with the Hough circle transform.
 
@@ -25,7 +25,7 @@ ArUco markers are used to detect the environment map as well as the pose of the 
     
     The search is done in a dynamic-programming sense where first the shortest path between any pair of objective points is computed, after which the shortest global path is computed by stitching together, for every possible permutation of objective points, the paths obtained by considering each successive pair of objective points.
 
-3. **Control and Navigation**: The navigation is split into two modes: global and local navigation. While the goal of the global navigation is to reach all of the objectives, the local navigation ensures that the robot doesn't make an accident with an obstacle that is not seen by the camera.
+3. **Motion Control**: The navigation is split into two modes: global and local navigation. While the goal of the global navigation is to reach all of the objectives, the local navigation ensures that the robot doesn't make an accident with an obstacle that is not seen by the camera.
 The robot switches from the first to the second when an obstacle is detected by its proximity sensors.
 
 4. **Pose estimation**: A Kalman filter is used to merge the information obtained by the camera and the odometry. This also allows the robot to move independtly of the camera (when it is not available) by only relying on its odometry information.
